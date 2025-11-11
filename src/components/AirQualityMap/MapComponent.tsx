@@ -64,7 +64,6 @@ const MapComponent: React.FC<MapComponentProps> = ({
       },
       renderer: "canvas",
       gmap: {
-        ...(!data?.length && { center: [-51.9253, -14.235], zoom: 4 }),
         roam: true,
         echartsLayerZIndex: 2019,
       },
