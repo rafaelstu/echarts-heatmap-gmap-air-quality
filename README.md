@@ -51,7 +51,7 @@ Abra a porta indicada no terminal em seu navegador para ver a aplicação.
 ## 🏛️ Arquitetura e Decisões Técnicas
 
 **Gerenciamento de Estado do Servidor com TanStack Query:**
-  -   Em vez de gerenciar manualmente estados de `isLoading`, `error` e `data` com `useState`, utilizamos o **TanStack Query**.
+  -   Em vez de gerenciar manualmente estados de `isLoading`, `error` e `data` com `useState`, utilizei o **TanStack Query**.
   -   **Decisão:** Essa escolha abstrai a complexidade do *data fetching*, fornecendo gratuitamente cache, revalidação automática, e hooks dedicados (`useQuery`, `useQueries`, `useMutation`) que tornam o código mais limpo e declarativo.
 
 
