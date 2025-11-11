@@ -45,3 +45,18 @@ npm run dev
 ```
 
 Abra a porta indicada no terminal em seu navegador para ver a aplicação.
+
+## 🏛️ Arquitetura e Decisões Técnicas
+
+**Gerenciamento de Estado do Servidor com TanStack Query:**
+  -   Em vez de gerenciar manualmente estados de `isLoading`, `error` e `data` com `useState`, utilizamos o **TanStack Query**.
+  -   **Decisão:** Essa escolha abstrai a complexidade do *data fetching*, fornecendo gratuitamente cache, revalidação automática, e hooks dedicados (`useQuery`, `useQueries`, `useMutation`) que tornam o código mais limpo e declarativo.
+
+
+
+**Formulários Otimizados com React Hook Form & Zod:**
+  -   O formulário de filtros é controlado pelo **React Hook Form** para otimizar a performance, evitando re-renderizações desnecessárias a cada digitação.
+  -   **Decisão:** O **Zod** foi integrado através do `@hookform/resolvers` para fornecer validação de schema robusta e type-safe, garantindo que os dados do formulário estejam no formato correto antes de serem utilizados.
+
+**Experiência do Usuário (UX):**
+  -   **Skeleton Loaders:** Durante o carregamento dos dados, um componente de *skeleton* é exibido no lugar do resumo estatístico. Isso fornece um feedback visual claro ao usuário.
