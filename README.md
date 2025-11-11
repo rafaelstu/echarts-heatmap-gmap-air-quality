@@ -1,4 +1,4 @@
-# echarts-heatmap-air-quality
+# echarts-heatmap-gmap-air-quality
 Qualidade do ar por localização com a biblioteca Apache ECharts usando o gráfico Heatmap no GMap (Google Maps)
 ---
 

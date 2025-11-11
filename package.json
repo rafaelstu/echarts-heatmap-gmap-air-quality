@@ -1,5 +1,5 @@
 {
-  "name": "echarts-heatmap-air-quality",
+  "name": "echarts-heatmap-gmap-air-quality",
   "private": true,
   "version": "0.0.0",
   "type": "module",
