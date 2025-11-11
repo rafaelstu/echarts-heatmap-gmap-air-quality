@@ -1,7 +1,7 @@
-import AirQualityHeatmap from "./components/AirQualityHeatmap";
+import AirQualityMap from "./components";
 
 function App() {
-  return <AirQualityHeatmap />;
+  return <AirQualityMap />;
 }
 
 export default App;
