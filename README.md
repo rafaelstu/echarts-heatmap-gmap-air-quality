@@ -1,18 +1,22 @@
-# echarts-heatmap-bmap-air-quality
-Qualidade do ar por localização com a biblioteca Apache ECharts usando o gráfico Heatmap BMap (Baidu Map)
+# echarts-heatmap-air-quality
+Qualidade do ar por localização com a biblioteca Apache ECharts usando o gráfico Heatmap no GMap (Google Maps)
 ---
 
 ## 📝 Descrição
 
-Este projeto é um exemplo de como usar a biblioteca Apache ECharts para criar um gráfico de mapa com dados de qualidade do ar por localização.
+Um painel interativo para visualização da qualidade do ar por localização, construído com React, TypeScript e Apache ECharts, utilizando a extensão do Google Maps para renderizar um mapa de calor (heatmap) sobre dados em tempo real.
 
-## 🚀 Tecnologias
+## 🚀 Tecnologias Utilizadas
 
-- React
-- Vite
-- Typescript
-- ECharts
-- Google Map
+-   **Frontend:** [React](https://reactjs.org/), [Vite](https://vitejs.dev/), [TypeScript](https://www.typescriptlang.org/)
+-   **Visualização de Dados:** [Apache ECharts](https://echarts.apache.org/), [echarts-for-react](https://github.com/hustcc/echarts-for-react), [echarts-extension-gmap](https://github.com/plainheart/echarts-extension-gmap)
+-   **Gerenciamento de Estado do Servidor:** [TanStack Query (React Query)](https://tanstack.com/query)
+-   **Gerenciamento de Formulários:** [React Hook Form](https://react-hook-form.com/)
+-   **Validação de Schema:** [Zod](https://zod.dev/)
+-   **Componentes de UI:** [ShadCN/UI](https://ui.shadcn.com/), [Tailwind CSS](https://tailwindcss.com/)
+-   **APIs Externas:** [World Air Quality Index Project API](https://aqicn.org/api/)
+
+---
 
 ## 📦 Instalação
 
@@ -20,6 +24,7 @@ Este projeto é um exemplo de como usar a biblioteca Apache ECharts para criar u
 
 ```bash
 git clone https://github.com/rafaelstu/echarts-heatmap-gmap-air-quality.git
+cd echarts-heatmap-gmap-air-quality
 ```
 
 2. Instale as dependências:
@@ -28,14 +33,15 @@ git clone https://github.com/rafaelstu/echarts-heatmap-gmap-air-quality.git
 npm install
 ```
 
-3. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis de ambiente:
+3. Configure o arquivo `.env` com a sua chave de API do World Air Quality Index:
 
 ```bash
 VITE_AQICN_TOKEN=AQICN_API_TOKEN
 ```
-
 4. Execute o projeto:
 
 ```bash
 npm run dev
 ```
+
+Abra a porta indicada no terminal em seu navegador para ver a aplicação.
