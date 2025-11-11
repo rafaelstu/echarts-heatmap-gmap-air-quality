@@ -46,6 +46,8 @@ npm run dev
 
 Abra a porta indicada no terminal em seu navegador para ver a aplicação.
 
+---
+
 ## 🏛️ Arquitetura e Decisões Técnicas
 
 **Gerenciamento de Estado do Servidor com TanStack Query:**
