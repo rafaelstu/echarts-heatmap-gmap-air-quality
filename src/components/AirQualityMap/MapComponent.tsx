@@ -79,7 +79,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
         inRange: {
           color: [
             "#00E400",
-            "#FFFF00",
+            "#FFC300",
             "#FF7E00",
             "#FF0000",
             "#8F3F97",

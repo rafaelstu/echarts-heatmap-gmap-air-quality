@@ -1,6 +1,7 @@
 export interface StationStat {
   name: string;
   value: number;
+  geo: [number, number];
 }
 
 export interface SummaryStatsData {
@@ -14,4 +15,5 @@ export interface SummaryStatsData {
 export interface SummaryStatsProps {
   stats: SummaryStatsData;
   pollutant: string;
+  onStationClick: (geo: [number, number]) => void;
 }

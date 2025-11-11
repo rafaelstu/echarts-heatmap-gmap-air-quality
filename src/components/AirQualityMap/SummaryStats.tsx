@@ -15,7 +15,11 @@ import {
 import { formatPollutantName } from "@/utils/formatters";
 import type { SummaryStatsProps } from "@/types/components/airQualityMap/summaryStats";
 
-const SummaryStats: React.FC<SummaryStatsProps> = ({ stats, pollutant }) => {
+const SummaryStats: React.FC<SummaryStatsProps> = ({
+  stats,
+  pollutant,
+  onStationClick,
+}) => {
   return (
     <Card>
       <CardHeader>
@@ -37,8 +41,15 @@ const SummaryStats: React.FC<SummaryStatsProps> = ({ stats, pollutant }) => {
           {stats.bestStation ? (
             <TooltipProvider delayDuration={100}>
               <Tooltip>
-                <TooltipTrigger className="font-semibold max-w-[80vw] lg:max-w-80 text-green-600 truncate">
-                  <span>{`${stats.bestStation.name} (${stats.bestStation.value})`}</span>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() =>
+                      stats.bestStation && onStationClick(stats.bestStation.geo)
+                    }
+                    className="font-semibold text-left max-w-[80vw] lg:max-w-80 text-green-600 truncate hover:underline cursor-pointer"
+                  >
+                    <span>{`${stats.bestStation.name} (${stats.bestStation.value})`}</span>
+                  </button>
                 </TooltipTrigger>
                 <TooltipContent>{`${stats.bestStation.name} (${stats.bestStation.value})`}</TooltipContent>
               </Tooltip>
@@ -53,8 +64,16 @@ const SummaryStats: React.FC<SummaryStatsProps> = ({ stats, pollutant }) => {
           {stats.worstStation ? (
             <TooltipProvider delayDuration={100}>
               <Tooltip>
-                <TooltipTrigger className="font-semibold text-red-600 truncate max-w-[80vw] lg:max-w-80">
-                  <span>{`${stats.worstStation.name} (${stats.worstStation.value})`}</span>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() =>
+                      stats.worstStation &&
+                      onStationClick(stats.worstStation.geo)
+                    }
+                    className="font-semibold text-left text-red-600 truncate max-w-[80vw] lg:max-w-80 hover:underline cursor-pointer"
+                  >
+                    <span>{`${stats.worstStation.name} (${stats.worstStation.value})`}</span>
+                  </button>
                 </TooltipTrigger>
                 <TooltipContent>{`${stats.worstStation.name} (${stats.worstStation.value})`}</TooltipContent>
               </Tooltip>

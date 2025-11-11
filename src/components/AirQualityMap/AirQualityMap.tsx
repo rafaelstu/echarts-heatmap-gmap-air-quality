@@ -13,6 +13,8 @@ import { filterSchema } from "@/constants/airQualityMap";
 import { searchLocationBounds } from "@/services/airQualityMap";
 import type { FilterFormValues } from "@/types/components/airQualityMap/filterControls";
 import type { EnrichedStationDataPoint } from "@/types/components/airQualityMap/airQualityMap";
+import SummaryStatsSkeleton from "./SummaryStatsSkeleton";
+import type { SummaryStatsData } from "@/types/components/airQualityMap/summaryStats";
 
 const AirQualityMap: React.FC = () => {
   const [boundsStr, setBoundsStr] = useState<string>("");
@@ -78,7 +80,7 @@ const AirQualityMap: React.FC = () => {
       }));
   }, [rawMapData, aqiRange, selectedPollutant]);
 
-  const summaryStats = useMemo(() => {
+  const summaryStats: SummaryStatsData = useMemo(() => {
     if (filteredMapData.length === 0) {
       return {
         average: "N/A",
@@ -112,8 +114,16 @@ const AirQualityMap: React.FC = () => {
     return {
       average: (sum / filteredMapData.length).toFixed(1),
       stationCount: filteredMapData.length,
-      bestStation: { name: best.name, value: best.value[2] },
-      worstStation: { name: worst.name, value: worst.value[2] },
+      bestStation: {
+        name: best.name,
+        value: best.value[2],
+        geo: [best.value[1], best.value[0]],
+      },
+      worstStation: {
+        name: worst.name,
+        value: worst.value[2],
+        geo: [worst.value[1], worst.value[0]],
+      },
       mostCommonPollutant: formatPollutantName(mostCommon),
     };
   }, [filteredMapData]);
@@ -137,6 +147,14 @@ const AirQualityMap: React.FC = () => {
     })(),
   ).current;
 
+  const handleGoToStation = (geo: [number, number]) => {
+    if (mapRef.current && geo) {
+      const [lat, lng] = geo;
+      mapRef.current.panTo({ lat, lng });
+      mapRef.current.setZoom(12);
+    }
+  };
+
   const onChartReady = (echartsInstance: EChartsType) => {
     const gmap = echartsInstance
       // @ts-expect-error getModel is private
@@ -149,6 +167,8 @@ const AirQualityMap: React.FC = () => {
       gmap.addListener("zoomend", debouncedUpdate);
     }
   };
+
+  const isLoading = isDataLoading || searchMutation.isPending;
 
   return (
     <div className="flex flex-col lg:flex-row h-screen w-screen bg-gray-100 overflow-hidden">
@@ -168,7 +188,15 @@ const AirQualityMap: React.FC = () => {
           </CardContent>
         </Card>
 
-        <SummaryStats stats={summaryStats} pollutant={selectedPollutant} />
+        {isLoading ? (
+          <SummaryStatsSkeleton />
+        ) : (
+          <SummaryStats
+            stats={summaryStats}
+            pollutant={selectedPollutant}
+            onStationClick={handleGoToStation}
+          />
+        )}
       </div>
 
       <div className="flex-1 min-h-96 min-w-80">
